@@ -1,0 +1,12 @@
+C:\Users\User15\source\repos\WpfApp1asds\WpfApp1asds\bin\Debug\WpfApp1asds.exe.config
+C:\Users\User15\source\repos\WpfApp1asds\WpfApp1asds\bin\Debug\WpfApp1asds.exe
+C:\Users\User15\source\repos\WpfApp1asds\WpfApp1asds\bin\Debug\WpfApp1asds.pdb
+C:\Users\User15\source\repos\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.csprojAssemblyReference.cache
+C:\Users\User15\source\repos\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.Form1.resources
+C:\Users\User15\source\repos\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.Form3.resources
+C:\Users\User15\source\repos\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.Properties.Resources.resources
+C:\Users\User15\source\repos\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.user.resources
+C:\Users\User15\source\repos\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.csproj.GenerateResource.cache
+C:\Users\User15\source\repos\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.csproj.CoreCompileInputs.cache
+C:\Users\User15\source\repos\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.exe
+C:\Users\User15\source\repos\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.pdb

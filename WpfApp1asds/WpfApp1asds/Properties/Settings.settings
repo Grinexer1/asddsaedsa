@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WpfApp1asds.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="dbConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Server=INSTANCE-1; Database=Svirin; User id =sa; Password =tesT900;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
