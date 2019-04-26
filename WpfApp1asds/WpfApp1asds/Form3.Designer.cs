@@ -75,7 +75,6 @@
             this.label4.Size = new System.Drawing.Size(127, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "Подтверждение пароля";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // textBox1
             // 
@@ -123,6 +122,7 @@
             this.button2.TabIndex = 9;
             this.button2.Text = "Отмена";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form3
             // 
@@ -139,8 +139,11 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form3";
             this.Text = "Регистрация";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form3_FormClosing);
             this.Load += new System.EventHandler(this.Form3_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

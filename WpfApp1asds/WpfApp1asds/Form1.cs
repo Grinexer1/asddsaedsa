@@ -39,10 +39,68 @@ namespace WpfApp1asds
             user use = new user();
             SqlConnection sqlcon = new SqlConnection(Properties.Settings.Default.dbConnectionString);
             sqlcon.Open();
-            SqlCommand command = new SqlCommand("select role from users where login='"+textBox2.Text+"' and pass='"+textBox2.Text+"'", sqlcon);
-            string role = command.ExecuteScalar().ToString();
-            if (role == "admin") { }
+            int er = 0;
+            string asd="";
+            if (textBox1.Text == "")
+            {
+                er++;
+                asd += "Введите логин \n";
 
+            }
+            if (textBox2.Text == "")
+            {
+                er++;
+                asd += "Введите пароль \n";
+            }
+            if (er < 1)
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand("select role from users where login='" + textBox1.Text + "' and pass='" + textBox2.Text + "'", sqlcon);
+                    string role = command.ExecuteScalar().ToString();
+                    if (role == "admin")
+                    {
+                        adm.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+
+                        if (role == "manager")
+                        {
+                            men.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            if (role == "skl")
+                            {
+                                sk.Show();
+                                this.Hide();
+                            }
+                            else
+                            {
+                                if (role == "user")
+                                {
+                                    use.Show();
+                                    this.Hide();
+                                }
+                                else { MessageBox.Show("Роль пользователя не указана в системе"); }
+                            }
+                        }
+                    }
+
+                }
+                catch
+                {
+                    MessageBox.Show("Не верный логин/пароль");
+                    
+                }
+            }
+            else
+            {
+                MessageBox.Show(asd);
+            }
         }
     }
 }

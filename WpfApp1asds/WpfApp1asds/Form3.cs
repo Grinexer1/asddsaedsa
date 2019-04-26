@@ -13,14 +13,10 @@ namespace WpfApp1asds
 {
     public partial class Form3 : Form
     {
+        Form fa = Application.OpenForms[0];
         public Form3()
         {
             InitializeComponent();
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -90,12 +86,26 @@ namespace WpfApp1asds
                     command.ExecuteNonQuery();
                     MessageBox.Show("Пользователь добавлен");
                     sqlcon.Close();
+
+                    fa.Show();
+                    this.Close();
                 }
                 catch
                 {
                     MessageBox.Show("Пользователь с таким логином уже существует");
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            fa.Show();
+            this.Close();
+        }
+        private void Form3_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            fa.Show();
+            this.Close();
         }
     }
 }
