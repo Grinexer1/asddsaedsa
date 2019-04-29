@@ -58,6 +58,8 @@ namespace WpfApp1asds
                 {
                     SqlCommand command = new SqlCommand("select role from users where login='" + textBox1.Text + "' and pass='" + textBox2.Text + "'", sqlcon);
                     string role = command.ExecuteScalar().ToString();
+                    textBox1.Text = "";
+                    textBox2.Text = "";
                     if (role == "admin")
                     {
                         adm.Show();
@@ -101,6 +103,11 @@ namespace WpfApp1asds
             {
                 MessageBox.Show(asd);
             }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

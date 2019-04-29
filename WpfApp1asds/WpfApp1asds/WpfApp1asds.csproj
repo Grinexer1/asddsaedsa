@@ -64,6 +64,12 @@
     <Compile Include="Form3.Designer.cs">
       <DependentUpon>Form3.cs</DependentUpon>
     </Compile>
+    <Compile Include="fur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fur.Designer.cs">
+      <DependentUpon>fur.cs</DependentUpon>
+    </Compile>
     <Compile Include="mened.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,12 @@
     </Compile>
     <Compile Include="skl.Designer.cs">
       <DependentUpon>skl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tkani.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="tkani.Designer.cs">
+      <DependentUpon>tkani.cs</DependentUpon>
     </Compile>
     <Compile Include="user.cs">
       <SubType>Form</SubType>
@@ -93,6 +105,12 @@
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="fur.resx">
+      <DependentUpon>fur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mened.resx">
+      <DependentUpon>mened.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -102,6 +120,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="skl.resx">
+      <DependentUpon>skl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tkani.resx">
+      <DependentUpon>tkani.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="user.resx">
       <DependentUpon>user.cs</DependentUpon>
     </EmbeddedResource>

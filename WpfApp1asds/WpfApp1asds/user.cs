@@ -16,5 +16,10 @@ namespace WpfApp1asds
         {
             InitializeComponent();
         }
+
+        private void user_Load(object sender, EventArgs e)
+        {
+            this.BackColor = Color.FromArgb(181, 213, 202);
+        }
     }
 }

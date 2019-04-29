@@ -23,3 +23,7 @@ C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.csproj.Co
 C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.exe
 C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.pdb
 C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.adm.resources
+C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.mened.resources
+C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.skl.resources
+C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.tkani.resources
+C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.fur.resources

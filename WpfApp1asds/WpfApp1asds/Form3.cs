@@ -105,7 +105,6 @@ namespace WpfApp1asds
         private void Form3_FormClosing(object sender, FormClosingEventArgs e)
         {
             fa.Show();
-            this.Close();
         }
     }
 }
