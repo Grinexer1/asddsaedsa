@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace WpfApp1asds
 {
@@ -28,7 +29,40 @@ namespace WpfApp1asds
             DataSet ds = new DataSet();
             sda.Fill(ds, "Фурнитура");
             dataGridView1.DataSource = ds.Tables["Фурнитура"];
+            DataGridViewImageColumn img = new DataGridViewImageColumn();
+            img.Name = "img";
+            img.HeaderText = "Изображение";
+            img.AutoSizeMode = new DataGridViewAutoSizeColumnMode();
+            dataGridView1.Columns.Add(img);
+            Image image;
+            string filename;
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[1].Value != null)
+                {
+                    filename = dataGridView1.Rows[i].Cells[1].Value.ToString() + ".jpg";
+                    if (File.Exists(@"C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\izobr\furn\" + filename))
+                    {
+
+                        image = Image.FromFile(@"C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\izobr\furn\" + filename);
+                    }
+                    else
+                    {
+                        image = Image.FromFile(@"C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\izobr\emt.jpg");
+                    }
+                }
+                else
+                {
+                    image = Image.FromFile(@"C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\izobr\emt.jpg");
+                }
+
+                dataGridView1.Rows[i].Cells["img"].Value = image;
+            }
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            sqlcon.Close();
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {

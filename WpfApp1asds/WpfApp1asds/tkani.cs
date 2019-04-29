@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace WpfApp1asds
 {
@@ -24,33 +25,41 @@ namespace WpfApp1asds
             SqlConnection sqlcon = new SqlConnection(Properties.Settings.Default.dbConnectionString);
             String query = "select* from Ткани";
             sqlcon.Open();
-            SqlDataAdapter sda = new SqlDataAdapter(query,sqlcon);
+            SqlDataAdapter sda = new SqlDataAdapter(query, sqlcon);
             DataSet ds = new DataSet();
             sda.Fill(ds, "Ткани");
             dataGridView1.DataSource = ds.Tables["Ткани"];
             DataGridViewImageColumn img = new DataGridViewImageColumn();
             img.Name = "img";
             img.HeaderText = "Изображение";
+            img.AutoSizeMode=new DataGridViewAutoSizeColumnMode();
             dataGridView1.Columns.Add(img);
             Image image;
+            string filename;
             for (int i = 0; i < dataGridView1.RowCount; i++)
             {
-                try
+                if (dataGridView1.Rows[i].Cells[1].Value != null)
                 {
-                    string filename = dataGridView1.Rows[i].Cells[1].Value.ToString() + ".jpg";
-                    if (i == 1)
-                    { 
-                        MessageBox.Show(filename);
+                    filename = dataGridView1.Rows[i].Cells[1].Value.ToString() + ".jpg";
+                    if (File.Exists(@"C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\izobr\tkani\" + filename))
+                    {
+
+                        image = Image.FromFile(@"C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\izobr\tkani\" + filename);
                     }
-                    image = Image.FromFile(@"C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\izobr\tkani\" + filename);
+                    else
+                    {
+                        image = Image.FromFile(@"C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\izobr\emt.jpg");
+                    }
                 }
-               catch
+                else
                 {
                     image = Image.FromFile(@"C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\izobr\emt.jpg");
                 }
                 dataGridView1.Rows[i].Cells["img"].Value = image;
-            }
             
+        }
+            dataGridView1.AutoSizeRowsMode=DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             sqlcon.Close();
         }
 
