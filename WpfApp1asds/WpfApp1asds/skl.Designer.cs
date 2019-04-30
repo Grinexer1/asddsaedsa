@@ -88,9 +88,9 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem спискиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem тканиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem фурнитураToolStripMenuItem;
+        public System.Windows.Forms.MenuStrip menuStrip1;
+        public System.Windows.Forms.ToolStripMenuItem спискиToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem тканиToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem фурнитураToolStripMenuItem;
     }
 }

@@ -18,15 +18,17 @@ namespace WpfApp1asds
         {
             InitializeComponent();
         }
-
+        DataSet ds;
+        SqlDataAdapter sda;
+        Form f1 = Application.OpenForms["skl"];
         private void fur_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.FromArgb(181, 213, 202);
             SqlConnection sqlcon = new SqlConnection(Properties.Settings.Default.dbConnectionString);
             String query = "select* from Фурнитура";
             sqlcon.Open();
-            SqlDataAdapter sda = new SqlDataAdapter(query, sqlcon);
-            DataSet ds = new DataSet();
+            sda = new SqlDataAdapter(query, sqlcon);
+            ds = new DataSet();
             sda.Fill(ds, "Фурнитура");
             dataGridView1.DataSource = ds.Tables["Фурнитура"];
             DataGridViewImageColumn img = new DataGridViewImageColumn();
@@ -71,15 +73,46 @@ namespace WpfApp1asds
 
         private void fur_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Form f1 = Application.OpenForms["skl"];
+            
             f1.Show();
+            dataGridView1.Dispose();
+            this.Dispose();
         }
 
         private void fur_SizeChanged(object sender, EventArgs e)
         {
             dataGridView1.Width = this.Width - 40;
             dataGridView1.Height = this.Height - 101;
-            button1.Location = new Point(this.Width - 103, this.Height - 74);
+            button1.Location = new Point(12, dataGridView1.Height + 27);
+            button2.Location = new Point(dataGridView1.Width - button2.Width, dataGridView1.Height + 27);
+            button3.Location = new Point(dataGridView1.Width - button2.Width - 130, dataGridView1.Height + 27);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DataSet changes = this.ds.GetChanges();
+            if (changes != null)
+            {
+                SqlCommandBuilder builder = new SqlCommandBuilder(sda);
+                builder.GetInsertCommand();
+                int updatesrows = sda.Update(changes, "Ткани");
+                ds.AcceptChanges();
+                WpfApp1asds.asd.x = this.Location.X;
+                WpfApp1asds.asd.y = this.Location.Y;
+                Form thi = new tkani();
+                thi.Show();
+                thi.Location = new Point(WpfApp1asds.asd.x, WpfApp1asds.asd.y);
+                this.Close();
+                f1.Hide();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow item in dataGridView1.SelectedRows)
+            {
+                dataGridView1.Rows.RemoveAt(item.Index);
+            }
         }
     }
 }

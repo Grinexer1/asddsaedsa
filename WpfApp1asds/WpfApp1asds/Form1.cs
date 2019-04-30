@@ -56,11 +56,12 @@ namespace WpfApp1asds
             {
                 try
                 {
+                    
                     SqlCommand command = new SqlCommand("select role from users where login='" + textBox1.Text + "' and pass='" + textBox2.Text + "'", sqlcon);
-                    string role = command.ExecuteScalar().ToString();
+                    WpfApp1asds.asd.role = command.ExecuteScalar().ToString();
                     textBox1.Text = "";
                     textBox2.Text = "";
-                    if (role == "admin")
+                    if (WpfApp1asds.asd.role == "admin")
                     {
                         adm.Show();
                         this.Hide();
@@ -68,21 +69,21 @@ namespace WpfApp1asds
                     else
                     {
 
-                        if (role == "manager")
+                        if (WpfApp1asds.asd.role == "manager")
                         {
                             men.Show();
                             this.Hide();
                         }
                         else
                         {
-                            if (role == "skl")
+                            if (WpfApp1asds.asd.role == "skl")
                             {
                                 sk.Show();
                                 this.Hide();
                             }
                             else
                             {
-                                if (role == "user")
+                                if (WpfApp1asds.asd.role == "user")
                                 {
                                     use.Show();
                                     this.Hide();
@@ -108,6 +109,35 @@ namespace WpfApp1asds
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(1, e);
+            }
+        }
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(1, e);
+            }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(1, e);
+            }
         }
     }
 }

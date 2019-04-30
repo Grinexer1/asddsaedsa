@@ -18,5 +18,14 @@ namespace WpfApp1asds
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
+
     }
+    public static class asd
+    {
+        public static string role { get; set; }
+        public static int x { get; set; }
+        public static int y { get; set; }
+    }
+ 
+
 }

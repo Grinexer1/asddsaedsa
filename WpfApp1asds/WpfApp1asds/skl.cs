@@ -22,7 +22,7 @@ namespace WpfApp1asds
             this.BackColor = Color.FromArgb(181, 213, 202);
         }
 
-        private void тканиToolStripMenuItem_Click(object sender, EventArgs e)
+        public void тканиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form tk = new tkani();
             tk.Show();
