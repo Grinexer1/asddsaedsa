@@ -34,5 +34,15 @@ namespace WpfApp1asds.Properties {
                 this["dbConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=INSTANCE-1;Initial Catalog=Svirin;Integrated Security=True")]
+        public string SvirinConnectionString {
+            get {
+                return ((string)(this["SvirinConnectionString"]));
+            }
+        }
     }
 }

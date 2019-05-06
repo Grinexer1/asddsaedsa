@@ -27,3 +27,5 @@ C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.mened.res
 C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.skl.resources
 C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.tkani.resources
 C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.fur.resources
+C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.redak.resources
+C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.spiizdel.resources

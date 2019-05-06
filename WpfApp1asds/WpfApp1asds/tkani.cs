@@ -27,7 +27,7 @@ namespace WpfApp1asds
         {
             this.BackColor = Color.FromArgb(181, 213, 202);
             SqlConnection sqlcon = new SqlConnection(Properties.Settings.Default.dbConnectionString);
-            String query = "select* from Ткани";
+            String query = "select  [id],[Артикул],[Название],[Цвет],[Рисунок],[Состав],[Ширина],[Длина],[Цена] from Ткани";
             sqlcon.Open();
             sda = new SqlDataAdapter(query, sqlcon);
             ds = new DataSet();

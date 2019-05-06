@@ -57,14 +57,14 @@
             // тканиToolStripMenuItem
             // 
             this.тканиToolStripMenuItem.Name = "тканиToolStripMenuItem";
-            this.тканиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.тканиToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.тканиToolStripMenuItem.Text = "Ткани";
             this.тканиToolStripMenuItem.Click += new System.EventHandler(this.тканиToolStripMenuItem_Click);
             // 
             // фурнитураToolStripMenuItem
             // 
             this.фурнитураToolStripMenuItem.Name = "фурнитураToolStripMenuItem";
-            this.фурнитураToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.фурнитураToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.фурнитураToolStripMenuItem.Text = "Фурнитура";
             this.фурнитураToolStripMenuItem.Click += new System.EventHandler(this.фурнитураToolStripMenuItem_Click);
             // 
@@ -76,7 +76,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "skl";
-            this.Text = "skl";
+            this.Text = "Кладовщик";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.skl_FormClosing);
             this.Load += new System.EventHandler(this.skl_Load);
             this.menuStrip1.ResumeLayout(false);

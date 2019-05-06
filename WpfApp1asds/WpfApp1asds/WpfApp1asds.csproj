@@ -90,6 +90,22 @@
     <Compile Include="skl.Designer.cs">
       <DependentUpon>skl.cs</DependentUpon>
     </Compile>
+    <Compile Include="spiizdel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="spiizdel.Designer.cs">
+      <DependentUpon>spiizdel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SvirinDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SvirinDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SvirinDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SvirinDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="tkani.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,8 +142,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="redak.resx">
+      <DependentUpon>redak.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="skl.resx">
       <DependentUpon>skl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="spiizdel.resx">
+      <DependentUpon>spiizdel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="tkani.resx">
       <DependentUpon>tkani.cs</DependentUpon>
@@ -144,6 +166,28 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="SvirinDataSet.xsc">
+      <DependentUpon>SvirinDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SvirinDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SvirinDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SvirinDataSet.xss">
+      <DependentUpon>SvirinDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SvirinDataSet1.xsc">
+      <DependentUpon>SvirinDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="SvirinDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SvirinDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SvirinDataSet1.xss">
+      <DependentUpon>SvirinDataSet1.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

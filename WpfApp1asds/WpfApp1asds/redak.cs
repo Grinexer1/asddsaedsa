@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace WpfApp1asds
 {
@@ -15,6 +16,149 @@ namespace WpfApp1asds
         public redak()
         {
             InitializeComponent();
+        }
+        public void dr()
+        {
+            Graphics g = panel1.CreateGraphics();
+            g.Clear(Color.White);
+            Pen p = new Pen(Color.Black, 3);
+            g.DrawRectangle(p, 50, 50, 300, 200);
+        }
+        private void redak_Paint(object sender, PaintEventArgs e)
+        {
+            /*SqlConnection sqlcon = new SqlConnection(Properties.Settings.Default.dbConnectionString);
+            String query = "select [id],[Название][Ширина],[Длина],[Цена] from Ткани";
+            String query2 = "select [id],[Наименование],[Ширина],[Длина],[Цена] from Фурнитура";
+            sqlcon.Open();
+            SqlDataAdapter sda = new SqlDataAdapter(query, sqlcon);
+            SqlDataAdapter sda2 = new SqlDataAdapter(query2, sqlcon);
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Image = Image.FromFile(@"C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\izobr\furn\GB1220.jpg");
+            */
+            dr();
+
+        }
+        private class tkani
+        {
+            public int id { get; set; }
+            public string Название { get; set; }
+            public double Ширина { get; set; }
+            public double Длина { get; set; }
+            public double Цена { get; set; }
+            public tkani(int i, string n, double c,double l, double p)
+            {
+                this.id = i;
+                this.Название = n;
+                this.Ширина = c;
+                this.Длина = l;
+                this.Цена = p;
+            }
+        }
+        SqlConnection sqlcon = new SqlConnection(Properties.Settings.Default.dbConnectionString);
+        private class furn
+        {
+            public int id { get; set; }
+            public string Наименование { get; set; }
+            public double Ширина { get; set; }
+            public double Длина { get; set; }
+            public double Цена { get; set; }
+            public furn(int i, string n, double c, double l, double p)
+            {
+                this.id = i;
+                this.Наименование = n;
+                this.Ширина = c;
+                this.Длина = l;
+                this.Цена = p;
+            }
+        }
+        private void redak_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'svirinDataSet1.Фурнитура' table. You can move, or remove it, as needed.
+            this.фурнитураTableAdapter1.Fill(this.svirinDataSet1.Фурнитура);
+            // TODO: This line of code loads data into the 'svirinDataSet.Фурнитура' table. You can move, or remove it, as needed.
+            this.фурнитураTableAdapter.Fill(this.svirinDataSet.Фурнитура);
+            
+            String query = "select [id],[Название],[Ширина],[Длина],[Цена] from Ткани";
+            sqlcon.Open();
+            SqlCommand scmd = new SqlCommand(query, sqlcon);
+            SqlDataReader drider = scmd.ExecuteReader();
+            List<tkani> tkanis = new List<tkani>();
+            while (drider.Read())
+            {
+                tkanis.Add(new tkani(Convert.ToInt32(drider[0]), drider[1].ToString(), Convert.ToDouble(drider[2]), Convert.ToDouble(drider[3]), Convert.ToDouble(drider[4])));
+            }
+            
+            comboBox1.DataSource = tkanis;
+            comboBox1.DisplayMember = "Название";
+            comboBox1.ValueMember = "id";
+            drider.Close();
+            query = "select [id],[Наименование],[Ширина],[Длина],[Цена] from Фурнитура";
+            scmd = new SqlCommand(query, sqlcon);
+            drider = scmd.ExecuteReader();
+            List<furn> furns = new List<furn>();
+            /*while (drider.Read())
+            {
+                furns.Add(new furn(Convert.ToInt32(drider[0]), drider[1].ToString(), Convert.ToDouble(drider[2]), Convert.ToDouble(drider[3]), Convert.ToDouble(drider[4])));
+                if (drider[1]==null)
+                {
+                    furns.Add(new furn(Convert.ToInt32(drider[0]), "none", Convert.ToDouble(drider[2]), Convert.ToDouble(drider[3]), Convert.ToDouble(drider[4])));
+                }
+                else {
+                    if (drider[2] == null)
+                    {
+                        furns.Add(new furn(Convert.ToInt32(drider[0]), drider[1].ToString(), 0, Convert.ToDouble(drider[3]), Convert.ToDouble(drider[4])));
+                    }
+                    else
+                    {
+                        if (drider[3] == null)
+                        {
+                            furns.Add(new furn(Convert.ToInt32(drider[0]), drider[1].ToString(), 0, Convert.ToDouble(drider[3]), Convert.ToDouble(drider[4])));
+                        }
+                        else
+                        {
+                            if (drider[4] == null)
+                            {
+                                furns.Add(new furn(Convert.ToInt32(drider[0]), drider[1].ToString(), Convert.ToDouble(drider[2]), Convert.ToDouble(drider[3]), 0));
+                            }
+                            else
+                            {
+                                furns.Add(new furn(Convert.ToInt32(drider[0]), drider[1].ToString(), Convert.ToDouble(drider[2]), Convert.ToDouble(drider[3]), Convert.ToDouble(drider[4])));
+                            }
+                        }
+                    }
+            }
+
+        }*/
+            sqlcon.Close();
+        }
+
+        private void comboBox2_ValueMemberChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String query = "select [id] from изделия";
+            sqlcon.Open();
+            SqlCommand scmd = new SqlCommand(query, sqlcon);
+            SqlDataReader dsad = scmd.ExecuteReader();
+            string art;
+            while (dsad.Read())
+            {
+                art = "sjdfghgsdfmkks" + (Convert.ToInt32(dsad[0]) + 1).ToString();
+            }
+             
+            string squ = " insert into изделия([Артикул],[Наименование],[Ширина],[Длина]) values ('" + art + "','" + textBox1.Text + "'," + Convert.ToDouble(textBox2.Text) + "," + Convert.ToDouble(textBox2.Text) + ")";
+            scmd = new SqlCommand(squ, sqlcon);
+            scmd.ExecuteNonQuery();
+            squ = "inser into [фурнитура изделия]([id фурнитуры],[id изделия],размещение) values(" + Convert.ToInt32(comboBox2.SelectedValue) + "," + (Convert.ToInt32(dsad[0]) + 1) + ",'asd')";
+            scmd = new SqlCommand(squ, sqlcon);
+            scmd.ExecuteNonQuery();
+            squ = "inser into [Ткани изделия]([id ткани],[id изделия]) values(" + Convert.ToInt32(comboBox1.SelectedValue) + "," + (Convert.ToInt32(dsad[0]) + 1) + ")";
+            scmd = new SqlCommand(squ, sqlcon);
+            scmd.ExecuteNonQuery();
+            sqlcon.Close();
         }
     }
 }

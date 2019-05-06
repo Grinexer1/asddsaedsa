@@ -21,5 +21,12 @@ namespace WpfApp1asds
         {
             this.BackColor = Color.FromArgb(181, 213, 202);
         }
+
+        private void изделияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form si = new spiizdel();
+            si.Show();
+            this.Hide();
+        }
     }
 }
