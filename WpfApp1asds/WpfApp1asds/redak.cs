@@ -139,26 +139,43 @@ namespace WpfApp1asds
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String query = "select [id] from изделия";
             sqlcon.Open();
-            SqlCommand scmd = new SqlCommand(query, sqlcon);
+            String query;
+            query = "select ширина from Фурнитура where id=" + comboBox2.SelectedValue;
+            SqlCommand scmd=new SqlCommand(query,sqlcon);
+            double shir = Convert.ToDouble(scmd.ExecuteScalar());
+            query= "select длина from Фурнитура where id=" + comboBox2.SelectedValue;
+            scmd = new SqlCommand(query, sqlcon);
+            double dlin = Convert.ToDouble(scmd.ExecuteScalar());
+            query = "select [id] from изделия";
+            scmd = new SqlCommand(query, sqlcon);
             SqlDataReader dsad = scmd.ExecuteReader();
-            string art;
+
+            string art = "";
+            int id = 0;
             while (dsad.Read())
             {
                 art = "sjdfghgsdfmkks" + (Convert.ToInt32(dsad[0]) + 1).ToString();
+                id = (Convert.ToInt32(dsad[0]) + 1);
             }
              
             string squ = " insert into изделия([Артикул],[Наименование],[Ширина],[Длина]) values ('" + art + "','" + textBox1.Text + "'," + Convert.ToDouble(textBox2.Text) + "," + Convert.ToDouble(textBox2.Text) + ")";
             scmd = new SqlCommand(squ, sqlcon);
+            dsad.Close();
             scmd.ExecuteNonQuery();
-            squ = "inser into [фурнитура изделия]([id фурнитуры],[id изделия],размещение) values(" + Convert.ToInt32(comboBox2.SelectedValue) + "," + (Convert.ToInt32(dsad[0]) + 1) + ",'asd')";
+            squ = "insert into [фурнитура изделия]([id фурнитуры],[id изделия],размещение,ширина,длинна,количество) values(" + Convert.ToInt32(comboBox2.SelectedValue) + "," + id.ToString() + ",'asd',"+shir+","+dlin+",1)";
             scmd = new SqlCommand(squ, sqlcon);
             scmd.ExecuteNonQuery();
-            squ = "inser into [Ткани изделия]([id ткани],[id изделия]) values(" + Convert.ToInt32(comboBox1.SelectedValue) + "," + (Convert.ToInt32(dsad[0]) + 1) + ")";
+            squ = "insert into [Ткани изделия]([id ткани],[id изделия]) values(" + Convert.ToInt32(comboBox1.SelectedValue) + "," + id.ToString() + ")";
             scmd = new SqlCommand(squ, sqlcon);
             scmd.ExecuteNonQuery();
             sqlcon.Close();
+            MessageBox.Show("Изделие добавлено");
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            comboBox1.Text=comboBox1.Items[0].ToString();
+            comboBox2.Text = comboBox2.Items[0].ToString();
         }
     }
 }
