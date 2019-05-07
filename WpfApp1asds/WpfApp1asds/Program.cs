@@ -16,7 +16,7 @@ namespace WpfApp1asds
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new redak());
+            Application.Run(new Form1());
         }
 
     }
@@ -25,6 +25,7 @@ namespace WpfApp1asds
         public static string role { get; set; }
         public static int x { get; set; }
         public static int y { get; set; }
+        public static int l { get; set; }
     }
  
 

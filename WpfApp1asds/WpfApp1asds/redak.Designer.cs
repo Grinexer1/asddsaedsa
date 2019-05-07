@@ -39,18 +39,19 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.фурнитураBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.svirinDataSet1 = new WpfApp1asds.SvirinDataSet1();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.svirinDataSet = new WpfApp1asds.SvirinDataSet();
             this.фурнитураBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.фурнитураTableAdapter = new WpfApp1asds.SvirinDataSetTableAdapters.ФурнитураTableAdapter();
-            this.svirinDataSet1 = new WpfApp1asds.SvirinDataSet1();
-            this.фурнитураBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.фурнитураTableAdapter1 = new WpfApp1asds.SvirinDataSet1TableAdapters.ФурнитураTableAdapter();
+            this.button2 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.фурнитураBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.фурнитураBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.фурнитураBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -105,9 +106,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 108);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 13);
+            this.label3.Size = new System.Drawing.Size(72, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Длинна ткани";
+            this.label3.Text = "Длина ткани";
             // 
             // label4
             // 
@@ -138,6 +139,16 @@
             this.comboBox2.TabIndex = 9;
             this.comboBox2.ValueMember = "id";
             this.comboBox2.ValueMemberChanged += new System.EventHandler(this.comboBox2_ValueMemberChanged);
+            // 
+            // фурнитураBindingSource1
+            // 
+            this.фурнитураBindingSource1.DataMember = "Фурнитура";
+            this.фурнитураBindingSource1.DataSource = this.svirinDataSet1;
+            // 
+            // svirinDataSet1
+            // 
+            this.svirinDataSet1.DataSetName = "SvirinDataSet1";
+            this.svirinDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // panel1
             // 
@@ -170,25 +181,26 @@
             // 
             this.фурнитураTableAdapter.ClearBeforeFill = true;
             // 
-            // svirinDataSet1
-            // 
-            this.svirinDataSet1.DataSetName = "SvirinDataSet1";
-            this.svirinDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // фурнитураBindingSource1
-            // 
-            this.фурнитураBindingSource1.DataMember = "Фурнитура";
-            this.фурнитураBindingSource1.DataSource = this.svirinDataSet1;
-            // 
             // фурнитураTableAdapter1
             // 
             this.фурнитураTableAdapter1.ClearBeforeFill = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(13, 230);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Отрисовать";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // redak
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.comboBox2);
@@ -201,14 +213,16 @@
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "redak";
             this.Text = "Конструктор изделия";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.redak_FormClosing);
             this.Load += new System.EventHandler(this.redak_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.redak_Paint);
+            ((System.ComponentModel.ISupportInitialize)(this.фурнитураBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.фурнитураBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.фурнитураBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -234,5 +248,6 @@
         private SvirinDataSet1 svirinDataSet1;
         private System.Windows.Forms.BindingSource фурнитураBindingSource1;
         private SvirinDataSet1TableAdapters.ФурнитураTableAdapter фурнитураTableAdapter1;
+        private System.Windows.Forms.Button button2;
     }
 }

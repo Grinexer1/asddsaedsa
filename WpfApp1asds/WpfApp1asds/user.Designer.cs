@@ -32,6 +32,9 @@
             this.спискиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.изделияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.конструкторИздклияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.тканиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.фурнитураToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.заказыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,10 +52,14 @@
             // спискиToolStripMenuItem
             // 
             this.спискиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.изделияToolStripMenuItem});
+            this.изделияToolStripMenuItem,
+            this.тканиToolStripMenuItem,
+            this.фурнитураToolStripMenuItem,
+            this.заказыToolStripMenuItem});
             this.спискиToolStripMenuItem.Name = "спискиToolStripMenuItem";
             this.спискиToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.спискиToolStripMenuItem.Text = "Списки";
+            this.спискиToolStripMenuItem.Click += new System.EventHandler(this.спискиToolStripMenuItem_Click);
             // 
             // изделияToolStripMenuItem
             // 
@@ -67,6 +74,26 @@
             this.конструкторИздклияToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
             this.конструкторИздклияToolStripMenuItem.Text = "Конструктор издклия";
             this.конструкторИздклияToolStripMenuItem.Click += new System.EventHandler(this.конструкторИздклияToolStripMenuItem_Click);
+            // 
+            // тканиToolStripMenuItem
+            // 
+            this.тканиToolStripMenuItem.Name = "тканиToolStripMenuItem";
+            this.тканиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.тканиToolStripMenuItem.Text = "Ткани";
+            this.тканиToolStripMenuItem.Click += new System.EventHandler(this.тканиToolStripMenuItem_Click);
+            // 
+            // фурнитураToolStripMenuItem
+            // 
+            this.фурнитураToolStripMenuItem.Name = "фурнитураToolStripMenuItem";
+            this.фурнитураToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.фурнитураToolStripMenuItem.Text = "Фурнитура";
+            this.фурнитураToolStripMenuItem.Click += new System.EventHandler(this.фурнитураToolStripMenuItem_Click);
+            // 
+            // заказыToolStripMenuItem
+            // 
+            this.заказыToolStripMenuItem.Name = "заказыToolStripMenuItem";
+            this.заказыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.заказыToolStripMenuItem.Text = "Заказы";
             // 
             // user
             // 
@@ -92,5 +119,8 @@
         private System.Windows.Forms.ToolStripMenuItem спискиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem изделияToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem конструкторИздклияToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem тканиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem фурнитураToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem заказыToolStripMenuItem;
     }
 }

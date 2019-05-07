@@ -81,8 +81,18 @@ namespace WpfApp1asds
 
         private void fur_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
-            f1.Show();
+            if (WpfApp1asds.asd.role == "skl")
+            {
+                f1.Show();
+            }
+            if (WpfApp1asds.asd.role == "user")
+            {
+                Form f2 = Application.OpenForms["user"];
+                dataGridView1.ReadOnly = false;
+                button1.Visible = true;
+                button2.Visible = true;
+                f2.Show();
+            }
             dataGridView1.Dispose();
             this.Dispose();
         }

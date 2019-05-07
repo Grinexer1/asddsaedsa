@@ -21,6 +21,7 @@ namespace WpfApp1asds
         private void Form1_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.FromArgb(181, 213, 202);
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -33,6 +34,7 @@ namespace WpfApp1asds
 
         private void button1_Click(object sender, EventArgs e)
         {
+            WpfApp1asds.asd.l = 0;
             adm adm = new adm();
             mened men = new mened();
             skl sk = new skl();

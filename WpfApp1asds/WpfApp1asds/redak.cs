@@ -17,12 +17,12 @@ namespace WpfApp1asds
         {
             InitializeComponent();
         }
-        public void dr()
+        public void dr(int x, int y)
         {
             Graphics g = panel1.CreateGraphics();
             g.Clear(Color.White);
-            Pen p = new Pen(Color.Black, 3);
-            g.DrawRectangle(p, 50, 50, 300, 200);
+            Pen p = new Pen(Color.Black, 1);
+            g.DrawRectangle(p, 10, 10, x, y);
         }
         private void redak_Paint(object sender, PaintEventArgs e)
         {
@@ -35,7 +35,7 @@ namespace WpfApp1asds
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = Image.FromFile(@"C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\izobr\furn\GB1220.jpg");
             */
-            dr();
+            
 
         }
         private class tkani
@@ -55,29 +55,13 @@ namespace WpfApp1asds
             }
         }
         SqlConnection sqlcon = new SqlConnection(Properties.Settings.Default.dbConnectionString);
-        private class furn
-        {
-            public int id { get; set; }
-            public string Наименование { get; set; }
-            public double Ширина { get; set; }
-            public double Длина { get; set; }
-            public double Цена { get; set; }
-            public furn(int i, string n, double c, double l, double p)
-            {
-                this.id = i;
-                this.Наименование = n;
-                this.Ширина = c;
-                this.Длина = l;
-                this.Цена = p;
-            }
-        }
         private void redak_Load(object sender, EventArgs e)
         {
+            if (WpfApp1asds.asd.l != 12) { this.Close(); }
             // TODO: This line of code loads data into the 'svirinDataSet1.Фурнитура' table. You can move, or remove it, as needed.
             this.фурнитураTableAdapter1.Fill(this.svirinDataSet1.Фурнитура);
             // TODO: This line of code loads data into the 'svirinDataSet.Фурнитура' table. You can move, or remove it, as needed.
             this.фурнитураTableAdapter.Fill(this.svirinDataSet.Фурнитура);
-            
             String query = "select [id],[Название],[Ширина],[Длина],[Цена] from Ткани";
             sqlcon.Open();
             SqlCommand scmd = new SqlCommand(query, sqlcon);
@@ -95,7 +79,6 @@ namespace WpfApp1asds
             query = "select [id],[Наименование],[Ширина],[Длина],[Цена] from Фурнитура";
             scmd = new SqlCommand(query, sqlcon);
             drider = scmd.ExecuteReader();
-            List<furn> furns = new List<furn>();
             /*while (drider.Read())
             {
                 furns.Add(new furn(Convert.ToInt32(drider[0]), drider[1].ToString(), Convert.ToDouble(drider[2]), Convert.ToDouble(drider[3]), Convert.ToDouble(drider[4])));
@@ -176,6 +159,59 @@ namespace WpfApp1asds
             textBox3.Text = "";
             comboBox1.Text=comboBox1.Items[0].ToString();
             comboBox2.Text = comboBox2.Items[0].ToString();
+        }
+
+        private void redak_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Form f1 = Application.OpenForms["user"];
+            f1.Show();
+            this.Dispose();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if ((textBox2.Text.Trim().Length!=0)&&(textBox2.Text.Trim().Length != 0))
+            {
+                int na = 0;
+                int nb = 0;
+                foreach(char a in textBox2.Text)
+                {
+                    if (char.IsNumber(a))
+                    {
+
+                    }
+                    else { na++; }
+                }
+                foreach(char b in textBox3.Text)
+                {
+                    if (char.IsNumber(b))
+                    {
+
+                    }
+                    else { nb++; }
+                }
+                if ((na == 0) && (nb == 00))
+                {
+                    dr(Convert.ToInt32(textBox2.Text.Trim()),Convert.ToInt32(textBox3.Text.Trim()));
+                }
+                else
+                {
+                    if (na != 0)
+                    {
+                        MessageBox.Show("Длина не является числом");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ширина не является числом");
+                    }
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Введите длину и ширину");
+            }
+            
         }
     }
 }
