@@ -23,6 +23,33 @@ namespace WpfApp1asds
             g.Clear(Color.White);
             Pen p = new Pen(Color.Black, 1);
             g.DrawRectangle(p, 10, 10, x, y);
+            DataRowView item = (DataRowView)comboBox1.SelectedItem;
+            String color = item.Row.ItemArray[3].ToString();
+            Brush bru;
+            if (item.Row.ItemArray[5].ToString().Contains("jpg"))
+            {
+                Bitmap bmp = new Bitmap(Image.FromFile(item.Row.ItemArray[5].ToString()));
+                TextureBrush tbu = new TextureBrush(bmp);
+                g.FillRectangle(tbu, 11, 11, x - 1, y - 1);
+            }
+            else
+            {
+                switch (color)
+                {
+                    case "красный":
+                        bru = new SolidBrush(Color.Red);
+                        g.FillRectangle(bru, 11, 11, x - 1, y - 1);
+                        break;
+                    case "зелёный":
+                        bru = new SolidBrush(Color.Green);
+                        g.FillRectangle(bru, 11, 11, x - 1, y - 1);
+                        break;
+                    default:
+                        bru = new SolidBrush(Color.White);
+                        g.FillRectangle(bru, 11, 11, x - 1, y - 1);
+                        break;
+                }
+            }
         }
         private void redak_Paint(object sender, PaintEventArgs e)
         {
@@ -38,26 +65,13 @@ namespace WpfApp1asds
             
 
         }
-        private class tkani
-        {
-            public int id { get; set; }
-            public string Название { get; set; }
-            public double Ширина { get; set; }
-            public double Длина { get; set; }
-            public double Цена { get; set; }
-            public tkani(int i, string n, double c,double l, double p)
-            {
-                this.id = i;
-                this.Название = n;
-                this.Ширина = c;
-                this.Длина = l;
-                this.Цена = p;
-            }
-        }
+
         SqlConnection sqlcon = new SqlConnection(Properties.Settings.Default.dbConnectionString);
         private void redak_Load(object sender, EventArgs e)
         {
-            if (WpfApp1asds.asd.l != 12) { this.Close(); }
+            // TODO: This line of code loads data into the 'svirinDataSet2.Ткани' table. You can move, or remove it, as needed.
+            this.тканиTableAdapter.Fill(this.svirinDataSet2.Ткани);
+
             // TODO: This line of code loads data into the 'svirinDataSet1.Фурнитура' table. You can move, or remove it, as needed.
             this.фурнитураTableAdapter1.Fill(this.svirinDataSet1.Фурнитура);
             // TODO: This line of code loads data into the 'svirinDataSet.Фурнитура' table. You can move, or remove it, as needed.
@@ -66,52 +80,7 @@ namespace WpfApp1asds
             sqlcon.Open();
             SqlCommand scmd = new SqlCommand(query, sqlcon);
             SqlDataReader drider = scmd.ExecuteReader();
-            List<tkani> tkanis = new List<tkani>();
-            while (drider.Read())
-            {
-                tkanis.Add(new tkani(Convert.ToInt32(drider[0]), drider[1].ToString(), Convert.ToDouble(drider[2]), Convert.ToDouble(drider[3]), Convert.ToDouble(drider[4])));
-            }
-            
-            comboBox1.DataSource = tkanis;
-            comboBox1.DisplayMember = "Название";
-            comboBox1.ValueMember = "id";
             drider.Close();
-            query = "select [id],[Наименование],[Ширина],[Длина],[Цена] from Фурнитура";
-            scmd = new SqlCommand(query, sqlcon);
-            drider = scmd.ExecuteReader();
-            /*while (drider.Read())
-            {
-                furns.Add(new furn(Convert.ToInt32(drider[0]), drider[1].ToString(), Convert.ToDouble(drider[2]), Convert.ToDouble(drider[3]), Convert.ToDouble(drider[4])));
-                if (drider[1]==null)
-                {
-                    furns.Add(new furn(Convert.ToInt32(drider[0]), "none", Convert.ToDouble(drider[2]), Convert.ToDouble(drider[3]), Convert.ToDouble(drider[4])));
-                }
-                else {
-                    if (drider[2] == null)
-                    {
-                        furns.Add(new furn(Convert.ToInt32(drider[0]), drider[1].ToString(), 0, Convert.ToDouble(drider[3]), Convert.ToDouble(drider[4])));
-                    }
-                    else
-                    {
-                        if (drider[3] == null)
-                        {
-                            furns.Add(new furn(Convert.ToInt32(drider[0]), drider[1].ToString(), 0, Convert.ToDouble(drider[3]), Convert.ToDouble(drider[4])));
-                        }
-                        else
-                        {
-                            if (drider[4] == null)
-                            {
-                                furns.Add(new furn(Convert.ToInt32(drider[0]), drider[1].ToString(), Convert.ToDouble(drider[2]), Convert.ToDouble(drider[3]), 0));
-                            }
-                            else
-                            {
-                                furns.Add(new furn(Convert.ToInt32(drider[0]), drider[1].ToString(), Convert.ToDouble(drider[2]), Convert.ToDouble(drider[3]), Convert.ToDouble(drider[4])));
-                            }
-                        }
-                    }
-            }
-
-        }*/
             sqlcon.Close();
         }
 
@@ -138,7 +107,7 @@ namespace WpfApp1asds
             int id = 0;
             while (dsad.Read())
             {
-                art = "sjdfghgsdfmkks" + (Convert.ToInt32(dsad[0]) + 1).ToString();
+                art = "user-" + (Convert.ToInt32(dsad[0]) + 1).ToString();
                 id = (Convert.ToInt32(dsad[0]) + 1);
             }
              
@@ -163,9 +132,7 @@ namespace WpfApp1asds
 
         private void redak_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Form f1 = Application.OpenForms["user"];
-            f1.Show();
-            this.Dispose();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -190,7 +157,7 @@ namespace WpfApp1asds
                     }
                     else { nb++; }
                 }
-                if ((na == 0) && (nb == 00))
+                if ((na == 0) && (nb == 00)&&(Convert.ToInt32(textBox2.Text.Trim())>0)&&(Convert.ToInt32(textBox3.Text.Trim())>0))
                 {
                     dr(Convert.ToInt32(textBox2.Text.Trim()),Convert.ToInt32(textBox3.Text.Trim()));
                 }
@@ -211,7 +178,20 @@ namespace WpfApp1asds
             {
                 MessageBox.Show("Введите длину и ширину");
             }
-            
+        }
+
+        private void redak_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+            Form f1 = Application.OpenForms["user"];
+            f1.Show();
+            this.Dispose();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form f2 = new dobavltkani();
+            f2.Show();
+            this.Enabled=false;
         }
     }
 }
