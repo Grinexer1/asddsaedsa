@@ -65,6 +65,7 @@ namespace WpfApp1asds
                     textBox2.Text = "";
                     if (WpfApp1asds.asd.role == "admin")
                     {
+                        WpfApp1asds.asd.log = textBox1.Text;
                         adm.Show();
                         this.Hide();
                     }
@@ -73,6 +74,7 @@ namespace WpfApp1asds
 
                         if (WpfApp1asds.asd.role == "manager")
                         {
+                            WpfApp1asds.asd.log = textBox1.Text;
                             men.Show();
                             this.Hide();
                         }
@@ -80,6 +82,7 @@ namespace WpfApp1asds
                         {
                             if (WpfApp1asds.asd.role == "skl")
                             {
+                                WpfApp1asds.asd.log = textBox1.Text;
                                 sk.Show();
                                 this.Hide();
                             }
@@ -87,6 +90,7 @@ namespace WpfApp1asds
                             {
                                 if (WpfApp1asds.asd.role == "user")
                                 {
+                                    WpfApp1asds.asd.log = textBox1.Text;
                                     use.Show();
                                     this.Hide();
                                 }

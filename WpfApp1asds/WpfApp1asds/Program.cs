@@ -16,7 +16,7 @@ namespace WpfApp1asds
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new redak());
+            Application.Run(new Zak());
         }
 
     }
@@ -26,6 +26,7 @@ namespace WpfApp1asds
         public static int x { get; set; }
         public static int y { get; set; }
         public static int l { get; set; }
+        public static string log { get; set; }
     }
  
 

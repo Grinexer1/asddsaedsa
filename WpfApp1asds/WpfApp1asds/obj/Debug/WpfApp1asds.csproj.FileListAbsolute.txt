@@ -30,3 +30,4 @@ C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.fur.resou
 C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.redak.resources
 C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.spiizdel.resources
 C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.dobavltkani.resources
+C:\Users\User15\gitpr\pr\WpfApp1asds\WpfApp1asds\obj\Debug\WpfApp1asds.Zak.resources

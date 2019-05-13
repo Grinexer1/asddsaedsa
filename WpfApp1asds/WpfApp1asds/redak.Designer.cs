@@ -33,6 +33,8 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.тканиBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.svirinDataSet2 = new WpfApp1asds.SvirinDataSet2();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,16 +50,14 @@
             this.фурнитураTableAdapter = new WpfApp1asds.SvirinDataSetTableAdapters.ФурнитураTableAdapter();
             this.фурнитураTableAdapter1 = new WpfApp1asds.SvirinDataSet1TableAdapters.ФурнитураTableAdapter();
             this.button2 = new System.Windows.Forms.Button();
-            this.svirinDataSet2 = new WpfApp1asds.SvirinDataSet2();
-            this.тканиBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.тканиTableAdapter = new WpfApp1asds.SvirinDataSet2TableAdapters.ТканиTableAdapter();
             this.button3 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.тканиBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.фурнитураBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.фурнитураBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.тканиBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -73,6 +73,8 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(121, 20);
             this.textBox2.TabIndex = 1;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // textBox3
             // 
@@ -80,6 +82,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(121, 20);
             this.textBox3.TabIndex = 2;
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // comboBox1
             // 
@@ -91,6 +94,16 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 3;
             this.comboBox1.ValueMember = "id";
+            // 
+            // тканиBindingSource
+            // 
+            this.тканиBindingSource.DataMember = "Ткани";
+            this.тканиBindingSource.DataSource = this.svirinDataSet2;
+            // 
+            // svirinDataSet2
+            // 
+            this.svirinDataSet2.DataSetName = "SvirinDataSet2";
+            this.svirinDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label1
             // 
@@ -204,16 +217,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // svirinDataSet2
-            // 
-            this.svirinDataSet2.DataSetName = "SvirinDataSet2";
-            this.svirinDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // тканиBindingSource
-            // 
-            this.тканиBindingSource.DataMember = "Ткани";
-            this.тканиBindingSource.DataSource = this.svirinDataSet2;
-            // 
             // тканиTableAdapter
             // 
             this.тканиTableAdapter.ClearBeforeFill = true;
@@ -252,12 +255,12 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.redak_FormClosing_1);
             this.Load += new System.EventHandler(this.redak_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.redak_Paint);
+            ((System.ComponentModel.ISupportInitialize)(this.тканиBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.фурнитураBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.фурнитураBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.тканиBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
