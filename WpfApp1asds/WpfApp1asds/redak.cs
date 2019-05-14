@@ -69,6 +69,10 @@ namespace WpfApp1asds
         SqlConnection sqlcon = new SqlConnection(Properties.Settings.Default.dbConnectionString);
         private void redak_Load(object sender, EventArgs e)
         {
+            if (WpfApp1asds.asd.l != 12)
+            {
+                this.Close();
+            }
             // TODO: This line of code loads data into the 'svirinDataSet2.Ткани' table. You can move, or remove it, as needed.
             this.тканиTableAdapter.Fill(this.svirinDataSet2.Ткани);
 
@@ -201,18 +205,20 @@ namespace WpfApp1asds
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar))
+            if (!Char.IsDigit(e.KeyChar) || (char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
             }
+            else { e.Handled = false; }
         }
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar))
+            if (!Char.IsDigit(e.KeyChar) || (char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
             }
+            else { e.Handled = false; }
         }
     }
 }

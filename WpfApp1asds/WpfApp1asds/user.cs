@@ -68,5 +68,12 @@ namespace WpfApp1asds
             f.button3.Visible = false;
             this.Hide();
         }
+
+        private void заказToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form f4 = new Zak();
+            f4.Show();
+            this.Hide();
+        }
     }
 }

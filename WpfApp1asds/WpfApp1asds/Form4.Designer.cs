@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.изделияBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.svirinDataSet3 = new WpfApp1asds.SvirinDataSet3();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.svirinDataSet3 = new WpfApp1asds.SvirinDataSet3();
-            this.изделияBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.изделияTableAdapter = new WpfApp1asds.SvirinDataSet3TableAdapters.изделияTableAdapter();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -41,8 +41,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.изделияBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet3)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -56,6 +56,16 @@
             this.comboBox1.TabIndex = 0;
             this.comboBox1.ValueMember = "id";
             // 
+            // изделияBindingSource
+            // 
+            this.изделияBindingSource.DataMember = "изделия";
+            this.изделияBindingSource.DataSource = this.svirinDataSet3;
+            // 
+            // svirinDataSet3
+            // 
+            this.svirinDataSet3.DataSetName = "SvirinDataSet3";
+            this.svirinDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
@@ -63,6 +73,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(258, 95);
             this.listBox1.TabIndex = 1;
+            this.listBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox1_KeyDown);
             // 
             // label1
             // 
@@ -72,16 +83,6 @@
             this.label1.Size = new System.Drawing.Size(153, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Список заказанных изделий";
-            // 
-            // svirinDataSet3
-            // 
-            this.svirinDataSet3.DataSetName = "SvirinDataSet3";
-            this.svirinDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // изделияBindingSource
-            // 
-            this.изделияBindingSource.DataMember = "изделия";
-            this.изделияBindingSource.DataSource = this.svirinDataSet3;
             // 
             // изделияTableAdapter
             // 
@@ -114,6 +115,9 @@
             this.textBox1.Size = new System.Drawing.Size(186, 20);
             this.textBox1.TabIndex = 5;
             this.textBox1.Text = "1";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label2
             // 
@@ -159,8 +163,8 @@
             this.Text = "Заказ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Zak_FormClosing);
             this.Load += new System.EventHandler(this.Zak_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.изделияBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.svirinDataSet3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

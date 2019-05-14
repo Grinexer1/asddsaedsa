@@ -30,18 +30,21 @@ namespace WpfApp1asds
             public int id {get; set;}
             public int kolv { get; set; }
             public double cen { get; set; }
-            public listik (string n, int i,int kolv,double cen)
+            public int schet { get; set; }
+            public listik (string n, int i,int kolv,double cen,int sch)
             {
                 this.Название = n;
                 this.id = i;
                 this.kolv = kolv;
                 this.cen = cen;
+                this.schet = sch;
             }
         }
         SqlConnection sqlcon = new SqlConnection(Properties.Settings.Default.dbConnectionString);
         List<listik> listoflistik = new List<listik>();
         SqlCommand scmd;
         SqlDataReader drider;
+        int sch = 0;
         private void button1_Click(object sender, EventArgs e)
         {
             double cena;
@@ -53,12 +56,14 @@ namespace WpfApp1asds
                 string query = "select [id фурнитуры], количество from [фурнитура изделия] where [фурнитура изделия].[id изделия] = " + Convert.ToInt32(comboBox1.SelectedValue);
                 scmd = new SqlCommand(query, sqlcon);
                 drider = scmd.ExecuteReader();
+                drider.Read();
                 int kolfur = Convert.ToInt32(drider[1]);
                 int idfur = Convert.ToInt32(drider[0]);
                 drider.Close();
                 query = "select [id ткани]from [Ткани изделия] where [id изделия] =" + Convert.ToInt32(comboBox1.SelectedValue);
                 scmd = new SqlCommand(query, sqlcon);
                 drider = scmd.ExecuteReader();
+                drider.Read();
                 int idtkani = Convert.ToInt32(drider[0]);
                 drider.Close();
                 query = "select Цена from Фурнитура where [id]='" + idfur.ToString() + "'";
@@ -69,19 +74,20 @@ namespace WpfApp1asds
                 cenafur = cenafur + Convert.ToDouble(scmd.ExecuteScalar());
             }
             catch { }
-            listoflistik.Add(new listik(comboBox1.Text, Convert.ToInt32(comboBox1.SelectedValue), Convert.ToInt32(textBox1.Text),cenafur));
+            listoflistik.Add(new listik(comboBox1.Text, Convert.ToInt32(comboBox1.SelectedValue), Convert.ToInt32(textBox1.Text),cenafur,sch));
             int i = 0;
             double cenaend=0;
             listBox1.Items.Clear();
             while (i < listoflistik.Count)
             {
-                listBox1.Items.Add(comboBox1.Text);
+                listBox1.Items.Add(listoflistik[i].Название);
                 cenaend += listoflistik[i].cen*listoflistik[i].kolv;
                 i++;
             }
             label4.Text = cenaend.ToString();
             sqlcon.Close();
             textBox1.Text = "1";
+            sch++;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -100,9 +106,9 @@ namespace WpfApp1asds
             }
             catch { }
             drider.Close();
-            string date = DateTime.Now.ToString("mm-dd-yyyy");
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
             WpfApp1asds.asd.log = "user";
-            query = "insert into заказ(дата,[этап выполнения],заказчик,менеджер,стоимость) values('" + date + "','заказан','" + WpfApp1asds.asd.log + "','" + WpfApp1asds.asd.log + "'," + Convert.ToDouble(label4.Text) + ")";
+            query = "insert into заказ(дата,[этап выполнения],заказчик,менеджер,стоимость) values('" +Convert.ToDateTime(date) + "','заказан','" + WpfApp1asds.asd.log + "','" + WpfApp1asds.asd.log + "'," + Convert.ToDouble(label4.Text) + ")";
             scmd = new SqlCommand(query, sqlcon);
             scmd.ExecuteScalar();
             int ist=0;
@@ -118,18 +124,62 @@ namespace WpfApp1asds
             listoflistik.Clear();
             listBox1.Items.Clear();
             label4.Text = "";
-            comboBox1.Text = "1";
+            comboBox1.Text = comboBox1.Items[0].ToString();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            listBox1.ClearSelected();
-        }
 
         private void Zak_FormClosing(object sender, FormClosingEventArgs e)
         {
             Form f1 = Application.OpenForms["user"];
             f1.Show();
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else { e.Handled = false; }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(textBox1.Text) <= 0)
+            {
+                textBox1.Text = "1";
+            }
+            if (Convert.ToInt32(textBox1.Text) > 100)
+            {
+                textBox1.Text = "99";
+            }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+        if (e.KeyCode == Keys.Back)
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void listBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
+            {
+                listoflistik.RemoveAt(Convert.ToInt32(listBox1.SelectedIndex));
+                listBox1.Items.RemoveAt(Convert.ToInt32(listBox1.SelectedIndex));
+                int i = 0;
+                double cenaend = 0;
+                listBox1.Items.Clear();
+                while (i < listoflistik.Count)
+                {
+                    listBox1.Items.Add(listoflistik[i].Название);
+                    cenaend += listoflistik[i].cen * listoflistik[i].kolv;
+                    i++;
+                }
+                label4.Text = cenaend.ToString();
+            }
         }
     }
 }
