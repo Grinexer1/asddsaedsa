@@ -24,9 +24,9 @@ namespace WpfApp1asds
 
         private void конструкторИздклияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WpfApp1asds.asd.l = 12;
             redak re = new redak();
             re.Show();
+            WpfApp1asds.asd.l = 12;
             this.Hide();
         }
 
@@ -74,6 +74,11 @@ namespace WpfApp1asds
             Form f4 = new Zak();
             f4.Show();
             this.Hide();
+        }
+
+        private void user_Click(object sender, EventArgs e)
+        {
+            WpfApp1asds.asd.l = 12;
         }
     }
 }

@@ -107,6 +107,7 @@
             this.Text = "Форма заказчика";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.user_FormClosing);
             this.Load += new System.EventHandler(this.конструкторИздклияToolStripMenuItem_Click);
+            this.Click += new System.EventHandler(this.user_Click);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

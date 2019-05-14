@@ -16,7 +16,7 @@ namespace WpfApp1asds
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Zak());
+            Application.Run(new Form1());
         }
 
     }

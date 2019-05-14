@@ -145,14 +145,18 @@ namespace WpfApp1asds
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(textBox1.Text) <= 0)
+            try
             {
-                textBox1.Text = "1";
+                if (Convert.ToInt32(textBox1.Text) <= 0)
+                {
+                    textBox1.Text = "1";
+                }
+                if (Convert.ToInt32(textBox1.Text) > 100)
+                {
+                    textBox1.Text = "99";
+                }
             }
-            if (Convert.ToInt32(textBox1.Text) > 100)
-            {
-                textBox1.Text = "99";
-            }
+            catch { textBox1.Text = "1"; }
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
