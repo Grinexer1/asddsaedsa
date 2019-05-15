@@ -80,8 +80,8 @@ namespace WpfApp1asds
             listBox1.Items.Clear();
             while (i < listoflistik.Count)
             {
-                listBox1.Items.Add(listoflistik[i].Название);
                 cenaend += listoflistik[i].cen*listoflistik[i].kolv;
+                listBox1.Items.Add(listoflistik[i].Название + " :" + listoflistik[i].kolv + " :" + (listoflistik[i].kolv*listoflistik[i].cen) + " руб.");
                 i++;
             }
             label4.Text = cenaend.ToString();
@@ -89,7 +89,6 @@ namespace WpfApp1asds
             textBox1.Text = "1";
             sch++;
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             sqlcon.Open();
@@ -112,37 +111,53 @@ namespace WpfApp1asds
             scmd = new SqlCommand(query, sqlcon);
             scmd.ExecuteScalar();
             int ist=0;
-            while (ist< listoflistik.Count)
+            try
             {
-                query = "insert into [заказанные изделия]([номер заказа],[id изделия],количество) values(" + lid + "," +listoflistik[ist].id+","+listoflistik[ist].kolv+")";
-                scmd = new SqlCommand(query, sqlcon);
-                scmd.ExecuteScalar();
-                ist++;
+                while (ist< listoflistik.Count)
+                {
+
+                    query = "insert into [заказанные изделия]([номер заказа],[id изделия],количество) values(" + (lid+1) + "," + listoflistik[ist].id + "," + listoflistik[ist].kolv + ")";
+                    scmd = new SqlCommand(query, sqlcon);
+                    scmd.ExecuteScalar();
+                    ist++;
+               
+                }
+                MessageBox.Show("Заказ добавлен");
+                listoflistik.Clear();
+                listBox1.Items.Clear();
+                label4.Text = "";
+            }
+            catch
+            {
+                /*int itj = 0;
+                foreach (int idj in listBox1.ValueMember)
+                {
+                    while (itj<=listoflistik.Count)
+                    {
+                        if (idj == listoflistik[itj].id)
+                        {
+
+                        }
+                    }
+                }*/
+                listoflistik.RemoveAt(ist);
+                listBox1.Items.RemoveAt(ist);
+                MessageBox.Show("Вы выбрали одинаковые товары несколько раз");
             }
             sqlcon.Close();
-            MessageBox.Show("Заказ добавлен");
-            listoflistik.Clear();
-            listBox1.Items.Clear();
-            label4.Text = "";
-            comboBox1.Text = comboBox1.Items[0].ToString();
         }
-
-
         private void Zak_FormClosing(object sender, FormClosingEventArgs e)
         {
             Form f1 = Application.OpenForms["user"];
             f1.Show();
         }
-
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar))
+            if ((!Char.IsDigit(e.KeyChar))&&(e.KeyChar!=8))
             {
                 e.Handled = true;
             }
-            else { e.Handled = false; }
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             try
@@ -156,17 +171,11 @@ namespace WpfApp1asds
                     textBox1.Text = "99";
                 }
             }
-            catch { textBox1.Text = "1"; }
+            catch { }
         }
-
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-        if (e.KeyCode == Keys.Back)
-            {
-                e.Handled = false;
-            }
         }
-
         private void listBox1_KeyDown(object sender, KeyEventArgs e)
         {
             if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
@@ -178,7 +187,7 @@ namespace WpfApp1asds
                 listBox1.Items.Clear();
                 while (i < listoflistik.Count)
                 {
-                    listBox1.Items.Add(listoflistik[i].Название);
+                    listBox1.Items.Add(listoflistik[i].Название + " :" + listoflistik[i].kolv + " :" + (listoflistik[i].kolv * listoflistik[i].cen) + " руб.");
                     cenaend += listoflistik[i].cen * listoflistik[i].kolv;
                     i++;
                 }
