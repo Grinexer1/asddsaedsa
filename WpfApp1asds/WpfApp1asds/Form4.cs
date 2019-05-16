@@ -91,60 +91,98 @@ namespace WpfApp1asds
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            sqlcon.Open();
-            string query = "select [номер заказа] from заказ";
-            scmd = new SqlCommand(query, sqlcon);
-            drider = scmd.ExecuteReader();
-            int lid = 0;
-            try
+            int oshi = 0;
+            int asddsa = 0;
+            int idje = 0;
+            int joj = 0;
+            while (asddsa < listoflistik.Count)
             {
-                while (drider.Read())
+                idje = listoflistik[asddsa].id;
+                while (joj < listoflistik.Count)
                 {
-                    lid = Convert.ToInt32(drider[0]);
-                }
-            }
-            catch { }
-            drider.Close();
-            string date = DateTime.Now.ToString("yyyy-MM-dd");
-            WpfApp1asds.asd.log = "user";
-            query = "insert into заказ(дата,[этап выполнения],заказчик,менеджер,стоимость) values('" +Convert.ToDateTime(date) + "','заказан','" + WpfApp1asds.asd.log + "','" + WpfApp1asds.asd.log + "'," + Convert.ToDouble(label4.Text) + ")";
-            scmd = new SqlCommand(query, sqlcon);
-            scmd.ExecuteScalar();
-            int ist=0;
-            try
-            {
-                while (ist< listoflistik.Count)
-                {
-
-                    query = "insert into [заказанные изделия]([номер заказа],[id изделия],количество) values(" + (lid+1) + "," + listoflistik[ist].id + "," + listoflistik[ist].kolv + ")";
-                    scmd = new SqlCommand(query, sqlcon);
-                    scmd.ExecuteScalar();
-                    ist++;
-               
-                }
-                MessageBox.Show("Заказ добавлен");
-                listoflistik.Clear();
-                listBox1.Items.Clear();
-                label4.Text = "";
-            }
-            catch
-            {
-                /*int itj = 0;
-                foreach (int idj in listBox1.ValueMember)
-                {
-                    while (itj<=listoflistik.Count)
+                    if ((idje == listoflistik[joj].id) && (asddsa != joj))
                     {
-                        if (idj == listoflistik[itj].id)
-                        {
-
-                        }
+                        oshi++;
                     }
-                }*/
-                listoflistik.RemoveAt(ist);
-                listBox1.Items.RemoveAt(ist);
-                MessageBox.Show("Вы выбрали одинаковые товары несколько раз");
+                    joj++;
+                }
+                asddsa++;
             }
-            sqlcon.Close();
+            if (oshi < 1)
+            {
+                sqlcon.Open();
+                string query = "select [номер заказа] from заказ";
+                scmd = new SqlCommand(query, sqlcon);
+                drider = scmd.ExecuteReader();
+                int lid = 0;
+                try
+                {
+                    while (drider.Read())
+                    {
+                        lid = Convert.ToInt32(drider[0]);
+                    }
+                }
+                catch { }
+                drider.Close();
+                string date = DateTime.Now.ToString("yyyy-MM-dd");
+                WpfApp1asds.asd.log = "user";
+                query = "insert into заказ(дата,[этап выполнения],заказчик,менеджер,стоимость) values('" + Convert.ToDateTime(date) + "','заказан','" + WpfApp1asds.asd.log + "','" + WpfApp1asds.asd.log + "'," + Convert.ToDouble(label4.Text) + ")";
+                scmd = new SqlCommand(query, sqlcon);
+                scmd.ExecuteScalar();
+                int ist = 0;
+                try
+                {
+                    while (ist < listoflistik.Count)
+                    {
+
+                        query = "insert into [заказанные изделия]([номер заказа],[id изделия],количество) values(" + (lid + 1) + "," + listoflistik[ist].id + "," + listoflistik[ist].kolv + ")";
+                        scmd = new SqlCommand(query, sqlcon);
+                        scmd.ExecuteScalar();
+                        ist++;
+
+                    }
+                    MessageBox.Show("Заказ добавлен");
+                    listoflistik.Clear();
+                    listBox1.Items.Clear();
+                    label4.Text = "";
+                }
+                catch
+                {
+                }
+                sqlcon.Close();
+            }
+            else
+            {
+                int ids = 0;
+                int proj = 0;
+                int tempid;
+                while (ids < listoflistik.Count)
+                {
+                    tempid = listoflistik[ids].id;
+                    while(proj < listoflistik.Count)
+                    {
+                        if ((tempid == listoflistik[proj].id) && (ids != proj))
+                        {
+                            listoflistik[ids].kolv += listoflistik[proj].kolv;
+                            listoflistik.RemoveAt(proj);
+                            listBox1.Items.RemoveAt(proj);
+                        }
+                        proj++;
+                    }
+                    ids++;
+                }
+                int i = 0;
+                double cenaend = 0;
+                listBox1.Items.Clear();
+                while (i < listoflistik.Count)
+                {
+                    listBox1.Items.Add(listoflistik[i].Название + " :" + listoflistik[i].kolv + " :" + (listoflistik[i].kolv * listoflistik[i].cen) + " руб.");
+                    cenaend += listoflistik[i].cen * listoflistik[i].kolv;
+                    i++;
+                }
+                label4.Text = cenaend.ToString();
+                button2_Click(sender, e);
+            }
         }
         private void Zak_FormClosing(object sender, FormClosingEventArgs e)
         {
